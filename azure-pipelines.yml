@@ -23,17 +23,17 @@ variables:
 stages:
 - stage: ResourceGroup
   displayName: Make Resource Group
-steps:
-- task: AzureCLI@2
-  displayName: 'Azure CLI '
-  inputs:
-    azureSubscription: $(azureSubscription)
-    scriptType: pscore
-    scriptLocation: inlineScript
-    inlineScript: | 
-      az group create -l westus2 -n myapp-rg
-      az appservice plan create -g myapp-rg -n myapp-service-plan --is-linux
-      az webapp create -g myapp-rg -p myapp-service-plan -n $(environmentName) --runtime "JAVA|8-jre8"
+  steps:
+  - task: AzureCLI@2
+    displayName: 'Azure CLI '
+    inputs:
+      azureSubscription: $(azureSubscription)
+      scriptType: pscore
+      scriptLocation: inlineScript
+      inlineScript: | 
+        az group create -l westus2 -n myapp-rg
+        az appservice plan create -g myapp-rg -n myapp-service-plan --is-linux
+        az webapp create -g myapp-rg -p myapp-service-plan -n $(environmentName) --runtime "JAVA|8-jre8"
 
 
 - stage: Build
