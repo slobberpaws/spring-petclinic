@@ -22,7 +22,7 @@ variables:
   
 stages:
 - stage: ResourceGroup
-- displayName: Make Resource Group
+  displayName: Make Resource Group
 steps:
 - task: AzureCLI@2
   displayName: 'Azure CLI '
@@ -38,6 +38,7 @@ steps:
 
 - stage: Build
   displayName: Build stage
+  dependsOn: ResourceGroup
   jobs:
   - job: MavenPackageAndPublishArtifacts
     displayName: Maven Package and Publish Artifacts
