@@ -36,7 +36,6 @@ steps:
       az webapp create -g myapp-rg -p myapp-service-plan -n $(environmentName) --runtime "JAVA|8-jre8"
 
 
-stages:
 - stage: Build
   displayName: Build stage
   jobs:
