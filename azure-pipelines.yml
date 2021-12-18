@@ -9,7 +9,7 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'c1950659-ef39-4f7c-a82e-03be98ee808d'
+  azureSubscription: 'DevOps-Demo'
 
   # Web app name
   webAppName: 'my-app-name-this'
@@ -19,6 +19,22 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  
+stages:
+- stage: ResourceGroup
+- displayName: Make Resource Group
+steps:
+- task: AzureCLI@2
+  displayName: 'Azure CLI '
+  inputs:
+    azureSubscription: $(azureSubscription)
+    scriptType: pscore
+    scriptLocation: inlineScript
+    inlineScript: | 
+      az group create -l westus2 -n myapp-rg
+      az appservice plan create -g myapp-rg -n myapp-service-plan --is-linux
+      az webapp create -g myapp-rg -p myapp-service-plan -n $(environmentName) --runtime "JAVA|8-jre8"
+
 
 stages:
 - stage: Build
