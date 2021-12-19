@@ -13,12 +13,6 @@
     <version>2.6.1</version>
   </parent>
   <name>petclinic</name>
-
-  
-  <functionAppName>my-app-name-this</functionAppName>
-        <functionAppRegion>westus2</functionAppRegion>
-        <stagingDirectory>${project.build.directory}/azure-functions/${functionAppName}</stagingDirectory>
-        <functionResourceGroup>myapp-rg</functionResourceGroup>
   <properties>
 
     <!-- Generic properties -->
